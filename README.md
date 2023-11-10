@@ -8,7 +8,12 @@ This is the code used for the work:
 
 ## Usage
 
-You can download the data used from: [Link text Here](www.google.es);
+Install the conda env with the `requirements.txt` file.
+```
+$ conda create --name MY_ENV_NAME --file requirements.txt
+```
+
+Download the data used from: [Link text Here](www.google.es);
 Place it in your specified `data_folder` path.
 
 ## Citation
