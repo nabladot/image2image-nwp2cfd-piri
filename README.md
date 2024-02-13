@@ -4,7 +4,7 @@ This is an adapted code from [`pix2pix: Image-to-image translation with a condit
 ## Paper
 
 This is the code used for the work:
-`Image-to-image model to predict CFD from NWP inputs over complex terrains`
+`Deep learning image-to-image model to generate CFD-like data from NWP inputs over complex terrains`
 
 ## Usage
 
