@@ -1,0 +1,490 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//Radio de nuestra circunferencia
+convertToMeters 4500;	//This is an scaling operation. Done at the end.9800
+alturaReal 5000.0;
+dx 200; //Anchura en metros de las celdas del cuadrado interior
+
+altura #calc "$alturaReal/$convertToMeters";  //Altura efectiva es 'convertToMeters' * 'altura'
+
+centroX #calc "712302.5/$convertToMeters";
+centroY #calc "4731115.0/$convertToMeters";
+// centroX 0;
+// centroY 0;
+h 0.75;
+r #calc "$h/sqrt(2.0)";
+
+// Refinamiento de la "corona" exterior
+refinamiento 1;
+xcells #calc "int((0.707106781187*$convertToMeters*$h*0.5)/$dx)";
+ycells $xcells;
+// Para que las celdas sean cuadradas + o -
+zcells #calc "int($alturaReal/$dx)";
+
+vertices
+(
+    // vertices del suelo
+    (#calc "1+$centroX" #calc "0+$centroY" 0)
+    (#calc "0.923880+$centroX" #calc "0.382683+$centroY" 0)
+    (#calc "0.707107+$centroX" #calc "0.707107+$centroY" 0)
+    (#calc "0.382683+$centroX" #calc "0.923880+$centroY" 0)
+    (#calc "0+$centroX" #calc "1+$centroY" 0)
+    (#calc "-0.382683+$centroX" #calc "0.923880+$centroY" 0)
+    (#calc "-0.707107+$centroX" #calc "0.707107+$centroY" 0)
+    (#calc "-0.923880+$centroX" #calc "0.382683+$centroY" 0)
+    (#calc "-1+$centroX" #calc "0+$centroY" 0)
+    (#calc "-0.923880+$centroX" #calc "-0.382683+$centroY" 0)
+    (#calc "-0.707107+$centroX" #calc "-0.707107+$centroY" 0)
+    (#calc "-0.382683+$centroX" #calc "-0.923880+$centroY" 0)
+    (#calc "0+$centroX" #calc "-1+$centroY" 0)
+    (#calc "0.382683+$centroX" #calc "-0.923880+$centroY" 0)
+    (#calc "0.707107+$centroX" #calc "-0.707107+$centroY" 0)
+    (#calc "0.923880+$centroX" #calc "-0.382683+$centroY" 0)
+    
+    //------
+    (#calc "$r+$centroX" #calc "0+$centroY" 0)
+    (#calc "$r+$centroX" #calc "$r/2.0+$centroY" 0)
+    (#calc "$r+$centroX" #calc "$r+$centroY" 0)
+    (#calc "$r/2+$centroX" #calc "$r+$centroY" 0)
+    //------
+    (#calc "0+$centroX" #calc "$r+$centroY" 0)
+    (#calc "-$r/2+$centroX" #calc "$r+$centroY" 0)
+    (#calc "-$r+$centroX" #calc "$r+$centroY" 0)
+    (#calc "-$r+$centroX" #calc "$r/2+$centroY" 0)    
+    //------
+    (#calc "-$r+$centroX" #calc "0+$centroY" 0)
+    (#calc "-$r+$centroX" #calc "-$r/2+$centroY" 0)
+    (#calc "-$r+$centroX" #calc "-$r+$centroY" 0)
+    (#calc "-$r/2+$centroX" #calc "-$r+$centroY" 0)    
+    //------
+    (#calc "0+$centroX" #calc "-$r+$centroY" 0)
+    (#calc "$r/2+$centroX" #calc "-$r+$centroY" 0)
+    (#calc "$r+$centroX" #calc "-$r+$centroY" 0)
+    (#calc "$r+$centroX" #calc "-$r/2+$centroY" 0)    
+    //------
+    (#calc "$r/2+$centroX" #calc "0+$centroY" 0)
+    (#calc "$r/2+$centroX" #calc "$r/2+$centroY" 0)
+    (#calc "0+$centroX" #calc "$r/2+$centroY" 0)
+    (#calc "-$r/2+$centroX" #calc "$r/2+$centroY" 0)    
+    //------
+    (#calc "-$r/2+$centroX" #calc "0+$centroY" 0)
+    (#calc "-$r/2+$centroX" #calc "-$r/2+$centroY" 0)
+    (#calc "0+$centroX" #calc "-$r/2+$centroY" 0)
+    (#calc "$r/2+$centroX" #calc "-$r/2+$centroY" 0)    
+    //------
+    
+    // Punto central
+    (#calc "0+$centroX" #calc "0+$centroY" 0) //40
+    
+    // vertices de arriba
+    (#calc "1+$centroX" #calc "0+$centroY" $altura)
+    (#calc "0.923880+$centroX" #calc "0.382683+$centroY" $altura)
+    (#calc "0.707107+$centroX" #calc "0.707107+$centroY" $altura)
+    (#calc "0.382683+$centroX" #calc "0.923880+$centroY" $altura)
+    (#calc "0+$centroX" #calc "1+$centroY" $altura)
+    (#calc "-0.382683+$centroX" #calc "0.923880+$centroY" $altura)
+    (#calc "-0.707107+$centroX" #calc "0.707107+$centroY" $altura)
+    (#calc "-0.923880+$centroX" #calc "0.382683+$centroY" $altura)
+    (#calc "-1+$centroX" #calc "0+$centroY" $altura)
+    (#calc "-0.923880+$centroX" #calc "-0.382683+$centroY" $altura)
+    (#calc "-0.707107+$centroX" #calc "-0.707107+$centroY" $altura)
+    (#calc "-0.382683+$centroX" #calc "-0.923880+$centroY" $altura)
+    (#calc "0+$centroX" #calc "-1+$centroY" $altura)
+    (#calc "0.382683+$centroX" #calc "-0.923880+$centroY" $altura)
+    (#calc "0.707107+$centroX" #calc "-0.707107+$centroY" $altura)
+    (#calc "0.923880+$centroX" #calc "-0.382683+$centroY" $altura)
+    
+    //------
+    (#calc "$r+$centroX" #calc "0+$centroY" $altura)
+    (#calc "$r+$centroX" #calc "$r/2.0+$centroY" $altura)
+    (#calc "$r+$centroX" #calc "$r+$centroY" $altura)
+    (#calc "$r/2+$centroX" #calc "$r+$centroY" $altura)
+    //------
+    (#calc "0+$centroX" #calc "$r+$centroY" $altura)
+    (#calc "-$r/2+$centroX" #calc "$r+$centroY" $altura)
+    (#calc "-$r+$centroX" #calc "$r+$centroY" $altura)
+    (#calc "-$r+$centroX" #calc "$r/2+$centroY" $altura)
+    //------
+    (#calc "-$r+$centroX" #calc "0+$centroY" $altura)
+    (#calc "-$r+$centroX" #calc "-$r/2+$centroY" $altura)
+    (#calc "-$r+$centroX" #calc "-$r+$centroY" $altura)
+    (#calc "-$r/2+$centroX" #calc "-$r+$centroY" $altura)
+    //------
+    (#calc "0+$centroX" #calc "-$r+$centroY" $altura)
+    (#calc "$r/2+$centroX" #calc "-$r+$centroY" $altura)
+    (#calc "$r+$centroX" #calc "-$r+$centroY" $altura)
+    (#calc "$r+$centroX" #calc "-$r/2+$centroY" $altura)
+    //------
+    (#calc "$r/2+$centroX" #calc "0+$centroY" $altura)
+    (#calc "$r/2+$centroX" #calc "$r/2+$centroY" $altura)
+    (#calc "0+$centroX" #calc "$r/2+$centroY" $altura)
+    (#calc "-$r/2+$centroX" #calc "$r/2+$centroY" $altura)
+    //------
+    (#calc "-$r/2+$centroX" #calc "0+$centroY" $altura)
+    (#calc "-$r/2+$centroX" #calc "-$r/2+$centroY" $altura)
+    (#calc "0+$centroX" #calc "-$r/2+$centroY" $altura)
+    (#calc "$r/2+$centroX" #calc "-$r/2+$centroY" $altura)
+    //------
+    
+    // Punto central
+    (#calc "0+$centroX" #calc "0+$centroY" $altura) //81
+);
+
+blocks
+(
+    hex (16 0 1 17 57 41 42 58)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (17 1 2 18 58 42 43 59)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (19 18 2 3 60 59 43 44)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (20 19 3 4 61 60 44 45)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    
+    hex (21 20 4 5 62 61 45 46)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (22 21 5 6 63 62 46 47)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (7 23 22 6 48 64 63 47)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (8 24 23 7 49 65 64 48)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    
+    hex (9 25 24 8 50 66 65 49)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (10 26 25 9 51 67 66 50)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (10 11 27 26 51 52 68 67)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (11 12 28 27 52 53 69 68)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    
+    hex (12 13 29 28 53 54 70 69)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (13 14 30 29 54 55 71 70)  ($xcells #calc "int($ycells*$refinamiento)" $zcells)  simpleGrading (1  1  1)
+    hex (30 14 15 31 71 55 56 72)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    hex (31 15 0 16 72 56 41 57)  (#calc "int($xcells*$refinamiento)" $ycells $zcells)  simpleGrading (1  1  1)
+    
+    
+    
+    hex (32 16 17 33 73 57 58 74)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (33 17 18 19 74 58 59 60)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (34 33 19 20 75 74 60 61)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (35 34 20 21 76 75 61 62)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    
+    hex (23 35 21 22 64 76 62 63)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (24 36 35 23 65 77 76 64)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (25 37 36 24 66 78 77 65)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (26 27 37 25 67 68 78 66)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    
+    hex (27 28 38 37 68 69 79 78)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (28 29 39 38 69 70 80 79)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (29 30 31 39 70 71 72 80)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (39 31 16 32 80 72 57 73)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    
+    hex (40 32 33 34 81 73 74 75)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (36 40 34 35 77 81 75 76)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (37 38 40 36 78 79 81 77)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+    hex (38 39 32 40 79 80 73 81)  ($xcells $ycells $zcells)  simpleGrading (1  1  1)
+);
+
+edges
+(
+//     arc 0 1 (#calc "0.980785+$centroX" #calc "0.19509+$centroY" 0)
+//     arc 24 25 (#calc "0.980785+$centroX" #calc "0.19509+$centroY" $altura)
+//     
+//     arc 1 2 (#calc "0.83147+$centroX" #calc "0.55557+$centroY" 0)
+//     arc 25 26 (#calc "0.83147+$centroX" #calc "0.55557+$centroY" $altura)
+//     
+//     arc 2 3 (#calc "0.55557+$centroX" #calc "0.83147+$centroY" 0)
+//     arc 26 27 (#calc "0.55557+$centroX" #calc "0.83147+$centroY" $altura)
+//     
+//     arc 3 4 (#calc "0.19509+$centroX" #calc "0.980785+$centroY" 0)
+//     arc 27 28 (#calc "0.19509+$centroX" #calc "0.980785+$centroY" $altura)
+//     
+//     arc 4 5 (#calc "-0.19509+$centroX" #calc "0.980785+$centroY" 0)
+//     arc 28 29 (#calc "-0.19509+$centroX" #calc "0.980785+$centroY" $altura)
+//     
+//     arc 5 6 (#calc "-0.55557+$centroX" #calc "0.83147+$centroY" 0)
+//     arc 29 30 (#calc "-0.55557+$centroX" #calc "0.83147+$centroY" $altura)
+//     
+//     arc 6 7 (#calc "-0.83147+$centroX" #calc "0.55557+$centroY" 0)
+//     arc 30 31 (#calc "-0.83147+$centroX" #calc "0.55557+$centroY" $altura)
+//     
+//     arc 7 8 (#calc "-0.980785+$centroX" #calc "0.19509+$centroY" 0)
+//     arc 31 32 (#calc "-0.980785+$centroX" #calc "0.19509+$centroY" $altura)
+//     
+//     arc 8 9 (#calc "-0.980785+$centroX" #calc "-0.19509+$centroY" 0)
+//     arc 32 33 (#calc "-0.980785+$centroX" #calc "-0.19509+$centroY" $altura)
+//     
+//     arc 9 10 (#calc "-0.83147+$centroX" #calc "-0.55557+$centroY" 0)
+//     arc 33 34 (#calc "-0.83147+$centroX" #calc "-0.55557+$centroY" $altura)
+//     
+//     arc 10 11 (#calc "-0.55557+$centroX" #calc "-0.83147+$centroY" 0)
+//     arc 34 35 (#calc "-0.55557+$centroX" #calc "-0.83147+$centroY" $altura)
+//     
+//     arc 11 12 (#calc "-0.19509+$centroX" #calc "-0.980785+$centroY" 0)
+//     arc 35 36 (#calc "-0.19509+$centroX" #calc "-0.980785+$centroY" $altura)
+//     
+//     arc 12 13 (#calc "0.19509+$centroX" #calc "-0.980785+$centroY" 0)
+//     arc 36 37 (#calc "0.19509+$centroX" #calc "-0.980785+$centroY" $altura)
+//     
+//     arc 13 14 (#calc "0.55557+$centroX" #calc "-0.83147+$centroY" 0)
+//     arc 37 38 (#calc "0.55557+$centroX" #calc "-0.83147+$centroY" $altura)
+//     
+//     arc 14 15 (#calc "0.83147+$centroX" #calc "-0.55557+$centroY" 0)
+//     arc 38 39 (#calc "0.83147+$centroX" #calc "-0.55557+$centroY" $altura)
+//     
+//     arc 15 0 (#calc "0.980785+$centroX" #calc "-0.19509+$centroY" 0)
+//     arc 39 24 (#calc "0.980785+$centroX" #calc "-0.19509+$centroY" $altura)
+);
+
+boundary
+(
+    lateral01
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (0 1 41 42)
+        );
+    }
+    
+    lateral02
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (1 2 42 43)
+        );
+    }
+    
+    lateral03
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (2 3 43 44)
+        );
+    }
+    
+    lateral04
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (3 4 44 45)
+        );
+    }
+    
+    lateral05
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (4 5 45 46)
+        );
+    }
+    
+    lateral06
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (5 6 46 47)
+        );
+    }
+    
+    lateral07
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (6 7 47 48)
+        );
+    }
+    
+    lateral08
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (7 8 48 49)
+        );
+    }
+    
+    lateral09
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (8 9 49 50)
+        );
+    }
+    
+    lateral10
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (9 10 50 51)
+        );
+    }
+    
+    lateral11
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (10 11 51 52)
+        );
+    }
+    
+    lateral12
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (11 12 52 53)
+        );
+    }
+    
+    lateral13
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (12 13 53 54)
+        );
+    }
+    
+    lateral14
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (13 14 54 55)
+        );
+    }
+    
+    lateral15
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (14 15 55 56)
+        );
+    }
+    
+    lateral16
+    {
+        type wall;
+        inGroups        1(lateral);
+        faces
+        (
+            (15 0 56 41)
+        );
+    }
+    
+    bottom
+    {
+        type wall;
+        faces
+        (            
+            (16 0 1 17)
+            (17 1 2 18)
+            (19 18 2 3)
+            (20 19 3 4)
+            (21 20 4 5)
+            (22 21 5 6)
+            (7 23 22 6)
+            (8 24 23 7)
+            (9 25 24 8)
+            (10 26 25 9)
+            (10 11 27 26)
+            (11 12 28 27)
+            (12 13 29 28)
+            (13 14 30 29)
+            (30 14 15 31)
+            (31 15 0 16)
+            (32 16 17 33)
+            (33 17 18 19)
+            (34 33 19 20)
+            (35 34 20 21)
+            (23 35 21 22)
+            (24 36 35 23)
+            (25 37 36 24)
+            (26 27 37 25)
+            (27 28 38 37)
+            (28 29 39 38)
+            (29 30 31 39)
+            (39 31 16 32)
+            (40 32 33 34)
+            (36 40 34 35)
+            (37 38 40 36)
+            (38 39 32 40)
+        );
+    }
+    
+    top
+    {
+        type wall;
+        faces
+        (           
+            (57 41 42 58)
+            (58 42 43 59)
+            (60 59 43 44)
+            (61 60 44 45)
+            (62 61 45 46)
+            (63 62 46 47)
+            (48 64 63 47)
+            (49 65 64 48)
+            (50 66 65 49)
+            (51 67 66 50)
+            (51 52 68 67)
+            (52 53 69 68)
+            (53 54 70 69)
+            (54 55 71 70)
+            (71 55 56 72)
+            (72 56 41 57)
+            (73 57 58 74)
+            (74 58 59 60)
+            (75 74 60 61)
+            (76 75 61 62)
+            (64 76 62 63)
+            (65 77 76 64)
+            (66 78 77 65)
+            (67 68 78 66)
+            (68 69 79 78)
+            (69 70 80 79)
+            (70 71 72 80)
+            (80 72 57 73)
+            (81 73 74 75)
+            (77 81 75 76)
+            (78 79 81 77)
+            (79 80 73 81)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

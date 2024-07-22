@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 1 0);
+
+boundaryField
+{
+    #include 'include/lateral01U'
+    #include 'include/lateral02U'
+    #include 'include/lateral03U'
+    #include 'include/lateral04U'
+    #include 'include/lateral05U'
+    #include 'include/lateral06U'
+    #include 'include/lateral07U'
+    #include 'include/lateral08U'
+    #include 'include/lateral09U'
+    #include 'include/lateral10U'
+    #include 'include/lateral11U'
+    #include 'include/lateral12U'
+    #include 'include/lateral13U'
+    #include 'include/lateral14U'
+    #include 'include/lateral15U'
+    #include 'include/lateral16U'
+    
+    bottom
+    {
+        type            noSlip;
+    }
+    top
+    {
+        type            zeroGradient;
+    }
+}
+
+
+// ************************************************************************* //

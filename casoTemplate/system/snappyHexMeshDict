@@ -1,0 +1,499 @@
+/*--------------------------------*- C++ -*----------------------------------*\ 
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox            |
+|  \    /   O peration     | Version:  2.3.0                                  |
+|   \  /    A nd           | Web:      www.OpenFOAM.org                       |
+|    \/     M anipulation  |                                                  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     4.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+geometry
+{
+    Arena.stl
+    {
+        type triSurfaceMesh; 
+        name Arena.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Arena_wall;                
+            }            
+        }
+    }
+    
+    Bosque_coniferas.stl
+    {
+        type triSurfaceMesh; 
+        name Bosque_coniferas.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Bosque_coniferas_wall;                
+            }            
+        }
+    }
+    
+    Bosque_frondosas.stl
+    {
+        type triSurfaceMesh; 
+        name Bosque_frondosas.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Bosque_frondosas_wall;                
+            }            
+        }
+    }
+    
+    Bosque_mixto.stl
+    {
+        type triSurfaceMesh; 
+        name Bosque_mixto.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Bosque_mixto_wall;                
+            }            
+        }
+    }
+    
+    Instalaciones_deportivas.stl
+    {
+        type triSurfaceMesh; 
+        name Instalaciones_deportivas.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Instalaciones_deportivas_wall;                
+            }            
+        }
+    }
+    
+    Laminas_de_agua.stl
+    {
+        type triSurfaceMesh; 
+        name Laminas_de_agua.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Laminas_de_agua_wall;                
+            }            
+        }
+    }
+    
+    Matorral_boscoso_de_transicion.stl
+    {
+        type triSurfaceMesh; 
+        name Matorral_boscoso_de_transicion.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Matorral_boscoso_de_transicion_wall;                
+            }            
+        }
+    }
+    
+    Matorrales.stl
+    {
+        type triSurfaceMesh; 
+        name Matorrales.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Matorrales_wall;                
+            }            
+        }
+    }
+    
+    Mosaico_de_cultivos.stl
+    {
+        type triSurfaceMesh; 
+        name Mosaico_de_cultivos.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Mosaico_de_cultivos_wall;                
+            }            
+        }
+    }
+    
+    Pastizales_naturales.stl
+    {
+        type triSurfaceMesh; 
+        name Pastizales_naturales.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Pastizales_naturales_wall;                
+            }            
+        }
+    }
+    
+    Praderas.stl
+    {
+        type triSurfaceMesh; 
+        name Praderas.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Praderas_wall;                
+            }            
+        }
+    }
+    
+    Redes_viarias.stl
+    {
+        type triSurfaceMesh; 
+        name Redes_viarias.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Redes_viarias_wall;                
+            }            
+        }
+    }
+    
+    Roquedo.stl
+    {
+        type triSurfaceMesh; 
+        name Roquedo.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Roquedo_wall;                
+            }            
+        }
+    }
+    
+    Urbano_continuo.stl
+    {
+        type triSurfaceMesh; 
+        name Urbano_continuo.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Urbano_continuo_wall;                
+            }            
+        }
+    }
+    
+    Urbano_discontinuo.stl
+    {
+        type triSurfaceMesh; 
+        name Urbano_discontinuo.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Urbano_discontinuo_wall;                
+            }            
+        }
+    }
+    
+    Vegetacion_escasa.stl
+    {
+        type triSurfaceMesh; 
+        name Vegetacion_escasa.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Vegetacion_escasa_wall;                
+            }            
+        }
+    }
+    
+    Zona_agricola_pero_con_zonas_de_vegetacion.stl
+    {
+        type triSurfaceMesh; 
+        name Zona_agricola_pero_con_zonas_de_vegetacion.stl; 
+        
+        regions
+        {
+            solid
+            {
+                name Zona_agricola_pero_con_zonas_de_vegetacion_wall;                
+            }            
+        }
+    }
+};
+//Setings for castellated mesh
+castellatedMeshControls
+{
+
+maxGlobalCells 30000000;
+
+maxLocalCells 30000000;
+
+    minRefinementCells 0;
+
+    maxLoadUnbalance 0.1;
+
+    nCellsBetweenLevels 3;
+
+    features
+    (
+//             {
+//                     file "Arena.eMesh";
+//                     level 1;
+//             }
+    );
+    
+    
+    nivelMinExt 1;
+    nivelMaxExt 1;
+    nivelMinInt 3;
+    nivelMaxInt 3;
+    refinementSurfaces
+    {
+       
+       ".*\.stl"
+       {
+           level ($nivelMinExt $nivelMaxExt);
+
+            // Optional region-wise level specification
+            regions
+            {
+                solid			// Named region in the STL file
+                {
+                    //level (2 2);
+                    level ($nivelMinInt $nivelMaxInt);
+                    patchInfo
+            		{
+                		type wall;
+                        inGroups        1(bottom);
+            		} 
+                }
+            }
+       }
+        
+    }
+    locationInMesh (712302.5 4731115.0 3854);
+    resolveFeatureAngle 30;
+    
+    planarAngle 30;
+
+    refinementRegions   {}
+
+    allowFreeStandingZoneFaces true;
+}
+
+
+
+// Settings for the snapping.
+snapControls
+{
+    //- Number of patch smoothing iterations before finding correspondence
+    //  to surface
+    nSmoothPatch 4;
+
+    //- Relative distance for points to be attracted by surface feature point
+    //  or edge. True distance is this factor times local
+    //  maximum edge length.
+    tolerance 2.0;
+
+    //- Number of mesh displacement relaxation iterations.
+    nSolveIter 100;
+
+    //- Maximum number of snapping relaxation iterations. Should stop
+    //  before upon reaching a correct mesh.
+    nRelaxIter 6;
+
+    // Feature snapping
+
+        //- Number of feature edge snapping iterations.
+        //  Leave out altogether to disable.
+        nFeatureSnapIter 10;
+
+        //- Detect (geometric only) features by sampling the surface
+        //  (default=false).
+        implicitFeatureSnap false;
+
+        //- Use castellatedMeshControls::features (default = true)
+        explicitFeatureSnap true;
+
+        //- Detect points on multiple surfaces (only for explicitFeatureSnap)
+        multiRegionFeatureSnap false;
+}
+
+
+
+// Settings for the layer addition.
+addLayersControls
+{
+    // Are the thickness parameters below relative to the undistorted
+    // size of the refined cell outside layer (true) or absolute sizes (false).
+    relativeSizes false;
+
+    // Per final patch (so not geometry!) the layer information
+    layers
+    {        
+        ".*\_wall"
+        {
+            nSurfaceLayers 3;
+        }      
+        
+//         "lateral.*"
+//         {
+//             nSurfaceLayers 5;
+//             firstLayerThickness 5.0;
+//             thickness 500;
+//         }
+    }
+
+    // Expansion factor for layer mesh
+    expansionRatio 1.2;
+    
+    thickness 100;
+
+    // Wanted thickness of final added cell layer. If multiple layers
+    // is the
+    // thickness of the layer furthest away from the wall.
+    // Relative to undistorted size of cell outside layer.
+    // is the thickness of the layer furthest away from the wall.
+    // See relativeSizes parameter.
+    //finalLayerThickness 30.0;
+    
+    //firstLayerThickness 10;
+
+    // Minimum thickness of cell layer. If for any reason layer
+    // cannot be above minThickness do not add layer.
+    // Relative to undistorted size of cell outside layer.
+    minThickness 1;
+
+    // If points get not extruded do nGrow layers of connected faces that are
+    // also not grown. This helps convergence of the layer addition process
+    // close to features.
+    // Note: changed(corrected) w.r.t 17x! (didn't do anything in 17x)
+    nGrow 0;
+
+    // Advanced settings
+
+    // When not to extrude surface. 0 is flat surface, 90 is when two faces
+    // are perpendicular
+    featureAngle 180;
+
+    // At non-patched sides allow mesh to slip if extrusion direction makes
+    // angle larger than slipFeatureAngle.
+    slipFeatureAngle 30;
+
+    // Maximum number of snapping relaxation iterations. Should stop
+    // before upon reaching a correct mesh.
+    nRelaxIter 20;
+
+    // Number of smoothing iterations of surface normals
+    nSmoothSurfaceNormals 4;
+
+    // Number of smoothing iterations of interior mesh movement direction
+    nSmoothNormals 3;
+
+    // Smooth layer thickness over surface patches
+    nSmoothThickness 10;
+
+    // Stop layer growth on highly warped cells
+    maxFaceThicknessRatio 0.5;
+
+    // Reduce layer growth where ratio thickness to medial
+    // distance is large
+    maxThicknessToMedialRatio 0.3;
+
+    // Angle used to pick up medial axis points
+    // Note: changed(corrected) w.r.t 17x! 90 degrees corresponds to 130 in 17x.
+    minMedianAxisAngle 90;
+
+
+    // Create buffer region for new layer terminations
+    nBufferCellsNoExtrude 0;
+
+
+    // Overall max number of layer addition iterations. The mesher will exit
+    // if it reaches this number of iterations; possibly with an illegal
+    // mesh.
+    nLayerIter 50;
+}
+
+
+
+// Generic mesh quality settings. At any undoable phase these determine
+// where to undo.
+meshQualityControls
+{
+    maxNonOrtho 65;
+    maxBoundarySkewness 18;
+    maxInternalSkewness 3.5;
+    maxConcave 80;
+    minFlatness 0.5;
+    minVol 1e-13;
+    minTetQuality 1e-9;
+    minArea -1;
+    minTwist 0.02;
+    minDeterminant 0.001;
+    minFaceWeight 0.05;
+    minVolRatio 0.01;
+    minTriangleTwist -1;
+
+    // Advanced
+
+    nSmoothScale 4;
+    errorReduction 0.75;
+}
+
+
+// Advanced
+
+// Write flags
+writeFlags
+(
+    scalarLevels
+    layerSets
+    layerFields     // write volScalarField for layer coverage
+);
+
+
+// Merge tolerance. Is fraction of overall bounding box of initial mesh.
+// Note: the write tolerance needs to be higher than this.
+mergeTolerance 1e-6;
+
+
+// ************************************************************************* //

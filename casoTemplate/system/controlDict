@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         10000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   1000;
+
+purgeWrite      1;
+
+writeFormat     ascii;
+
+writePrecision  10;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+// adjustTimeStep  yes;
+
+// maxCo           1;
+
+functions
+{
+    fileUpdate_Solution
+    {
+        type              timeActivatedFileUpdate;
+        libs              ("libutilityFunctionObjects.so");
+        writeControl      timeStep;
+        writeInterval     1;
+        fileToUpdate      "$FOAM_CASE/system/fvSolution";
+        timeVsFile
+        (
+            (-1   "$FOAM_CASE/system/fvSolution_0")
+            (3000 "$FOAM_CASE/system/fvSolution_100")
+        );
+    }
+    
+    fileUpdate_Schemes
+    {
+        type              timeActivatedFileUpdate;
+        libs              ("libutilityFunctionObjects.so");
+        writeControl      timeStep;
+        writeInterval     1;
+        fileToUpdate      "$FOAM_CASE/system/fvSchemes";
+        timeVsFile
+        (
+            (-1   "$FOAM_CASE/system/fvSchemes_0")
+            (6000 "$FOAM_CASE/system/fvSchemes_200")
+        );
+    }
+// #includeFunc flowRatePatch(name=lateral01)
+// #includeFunc flowRatePatch(name=lateral02)
+// #includeFunc flowRatePatch(name=lateral03)
+// #includeFunc flowRatePatch(name=lateral04)
+// #includeFunc flowRatePatch(name=lateral05)
+// #includeFunc flowRatePatch(name=lateral06)
+// #includeFunc flowRatePatch(name=lateral07)
+// #includeFunc flowRatePatch(name=lateral08)
+// #includeFunc flowRatePatch(name=lateral09)
+// #includeFunc flowRatePatch(name=lateral10)
+// #includeFunc flowRatePatch(name=lateral11)
+// #includeFunc flowRatePatch(name=lateral12)
+// #includeFunc flowRatePatch(name=lateral13)
+// #includeFunc flowRatePatch(name=lateral14)
+// #includeFunc flowRatePatch(name=lateral15)
+// #includeFunc flowRatePatch(name=lateral16)
+};
+
+// ************************************************************************* //

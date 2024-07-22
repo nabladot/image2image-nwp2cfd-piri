@@ -1,0 +1,88 @@
+/*--------------------------------*- C++ -*----------------------------------*\ 
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/ 
+
+    
+    Bosque_coniferas_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.5; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Bosque_mixto_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.5; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Laminas_de_agua_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.001; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Matorral_boscoso_de_transicion_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.06; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Matorrales_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.05; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Pastizales_naturales_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.15; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Praderas_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.12; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Roquedo_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.25; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Vegetacion_escasa_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.01; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
+    
+    Zona_agricola_pero_con_zonas_de_vegetacion_wall
+    {
+        type            nutkRoughWallFunction;
+        value           uniform 0;
+        Ks              uniform 0.14; //roughness height
+        Cs              uniform 0.75; //roughness constant = 0.5-1.0 (0.5 smooth surface)
+    }
