@@ -1,10 +1,11 @@
 # image2image-nwp2cfd-piri
 This is an adapted code from [`pix2pix: Image-to-image translation with a conditional GAN`](https://www.tensorflow.org/tutorials/generative/pix2pix) tutorial.
+In `casoTemplate` one can found the OpenFOAM folder used to run CFD cases.
 
 ## Paper
 
 This is the code used for the work:
-`Deep learning image-to-image cGAN model to generate CFD-like data from NWP input over complex terrains`
+`An image-to-image adversarial network to generate high resolution wind data over complex terrains from weather predictions`
 
 ## Usage
 
