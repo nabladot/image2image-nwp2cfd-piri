@@ -5,7 +5,7 @@ In `casoTemplate` one can found the OpenFOAM folder used to run CFD cases.
 ## Paper
 
 This is the code used for the work:
-`An image-to-image adversarial network to generate high resolution wind data over complex terrains from weather predictions`
+[`An image-to-image adversarial network to generate high resolution wind data over complex terrains from weather predictions`](https://doi.org/10.1016/j.engappai.2024.109533)
 
 ## Usage
 
@@ -29,7 +29,15 @@ $ ipython run.ipynb
 If you found this code useful please cite our work as:
 
 ```
-@article{
-
+@article{MILLAVAL2025109533,
+title = {An image-to-image adversarial network to generate high resolution wind data over complex terrains from weather predictions},
+journal = {Engineering Applications of Artificial Intelligence},
+volume = {139},
+pages = {109533},
+year = {2025},
+issn = {0952-1976},
+doi = {https://doi.org/10.1016/j.engappai.2024.109533},
+author = {Jaime Milla-Val and Carlos Montañés and Norberto Fueyo},
+keywords = {Microscale wind prediction, Computational fluid dynamic, Numerical weather prediction, Image-to-image, Deep learning, conditional Generative Adversarial Network}
 }
 ``` 
